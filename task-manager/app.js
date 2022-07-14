@@ -1,3 +1,5 @@
+require('./db/connect')
+const connectDB = require('./db/connect')
 const express = require('express');
 const tasks = require('./routes/tasks')
 const app = express();
@@ -14,6 +16,15 @@ app.get('/hello', (req, res) => {
 
 app.use('/api/v1/tasks', tasks)
 
-app.listen(port, () => {
-    console.log('listening to port 3004')
-})
+const start = async () => {
+    try {
+        await connectDB()
+        app.listen(port, () => {
+            console.log('listening to port 3004')
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+start()
