@@ -4,7 +4,7 @@ const connectionString = 'mongodb+srv://prateek041:8765Prat@nodeexpressprojects.
 
 const connectDB = (url) => {
     return mongoose
-        .connect(connectionString, {
+        .connect(url, {
             useNewUrlParser: true,
             useCreateIndex: true,
             useFindAndModify: false,
