@@ -4,18 +4,25 @@ const connectDB = require('./db/connect')
 const express = require('express');
 const tasks = require('./routes/tasks')
 const app = express();
+const notFound = require('./middleware/not-foud')
 
 const port = 3004;
 
 // middleware
 
+app.use(express.static('./public'))
+
 app.use(express.json()) // for incoming requests
 
-app.get('/hello', (req, res) => {
-    res.send("hello this is me")
-})
+// app.get('/hello', (req, res) => {
+//     res.send("hello this is me")
+// })
+
+// routes
 
 app.use('/api/v1/tasks', tasks)
+
+app.use(notFound)
 
 const start = async () => {
     try {
