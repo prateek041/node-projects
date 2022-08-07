@@ -5,6 +5,8 @@ const app = express()
 
 const connectDB = require('./db/connect')
 
+const productRoutes = require('./routes/products')
+
 const notFound = require('./middleware/not-found')
 const errorHandler = require('./middleware/errorHandler')
 
@@ -17,6 +19,8 @@ app.use(express.json())
 app.get('/', (req, res) => {
     res.send('Hello to the store API');
 })
+
+app.use('/api/v1/products', productRoutes);
 
 // invoking middleware
 app.use(notFound)
