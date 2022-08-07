@@ -1,5 +1,6 @@
 const express = require('express')
 require('dotenv').config()
+require('express-async-errors')
 
 const app = express()
 
@@ -26,7 +27,7 @@ app.use('/api/v1/products', productRoutes);
 app.use(notFound)
 app.use(errorHandler)
 
-const port = process.env.PORT || 4000
+const port = process.env.PORT || 3000
 const start = async () => {
     try {
         // connect to the DB.

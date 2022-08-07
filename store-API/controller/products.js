@@ -1,17 +1,11 @@
 const express = require('express');
 
 const getAllProductsStatic = async (req, res) => {
-    try {
-        res.status(200).send({
-            "status": "success",
-            "msg": "Test Route",
-        })
-    } catch (error) {
-        res.send({
-            "status": "failed",
-            'err': error,
-        })
-    }
+    throw new Error('testing package')
+    res.status(200).send({
+        "status": "success",
+        "msg": "Test Route",
+    })
 }
 
 const getAllProducts = async (req, res) => {
