@@ -18,8 +18,9 @@ const getTask = async (req, res) => {
         if (!task) {
             return res.status(404).json({ msg: "not found" }) // if a task with that id is not found.
         }
+        res.status(200).json(task)
     } catch {
-        res.status(201).json(task)
+        res.status(201).json({ 'msg': 'error' })
     }
 }
 
