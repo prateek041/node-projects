@@ -16,15 +16,15 @@ app.get('/', (req, res) => {
     res.send('Hello to the store API');
 })
 
-// test
-app.use(errorHandler)
+// invoking middleware
 app.use(notFound)
+app.use(errorHandler)
 
 const port = process.env.PORT || 4000
 const start = async () => {
     try {
         // connect to the DB.
-        app.listen(port, console.log(`listening to port {port}...`))
+        app.listen(port, console.log(`listening to port ${port}...`))
     } catch (error) {
         console.log(error)
     }
