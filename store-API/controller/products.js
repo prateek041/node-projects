@@ -1,25 +1,26 @@
-const express = require('express');
+// const express = require('express');
+const Products = require('../model/products')
 
 const getAllProductsStatic = async (req, res) => {
-    throw new Error('testing package')
+    const products = await Products.find({ featured: true });
     res.status(200).send({
         "status": "success",
-        "msg": "Test Route",
+        "Data": products,
     })
 }
 
 const getAllProducts = async (req, res) => {
-    try {
-        res.status(200).send({
-            "status": "success",
-            "msg": "Real Route",
-        })
-    } catch (error) {
-        res.send({
-            "status": "failed",
-            'err': error,
-        })
+    const { featured } = req.query;
+    const queryObject = {}
+    if (featured) {
+        queryObject.featured = featured === 'true' ? true : false;
     }
+    console.log(queryObject)
+    const products = await Products.find(queryObject)
+    res.status(200).send({
+        "status": "success",
+        "msg": products,
+    })
 }
 
 module.exports = {

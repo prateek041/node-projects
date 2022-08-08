@@ -10,8 +10,10 @@ const start = async (req, res) => {
         await Products.deleteMany();
         await Products.create(jsonProducts);
         console.log('connected succesfully');
+        process.exit(0);
     } catch (error) {
         console.log(error);
+        process.exit(1)
     }
 }
 
